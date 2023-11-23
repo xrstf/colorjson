@@ -141,6 +141,14 @@ func (f *Formatter) marshalValue(val interface{}, buf *bytes.Buffer, depth int) 
 		f.marshalArray(v, buf, depth)
 	case string:
 		f.marshalString(v, buf)
+	case int:
+		buf.WriteString(f.sprintColor(f.NumberColor, strconv.FormatInt(int64(v), 10)))
+	case int32:
+		buf.WriteString(f.sprintColor(f.NumberColor, strconv.FormatInt(int64(v), 10)))
+	case int64:
+		buf.WriteString(f.sprintColor(f.NumberColor, strconv.FormatInt(v, 10)))
+	case float32:
+		buf.WriteString(f.sprintColor(f.NumberColor, strconv.FormatFloat(v, 'f', -1, 32)))
 	case float64:
 		buf.WriteString(f.sprintColor(f.NumberColor, strconv.FormatFloat(v, 'f', -1, 64)))
 	case bool:
